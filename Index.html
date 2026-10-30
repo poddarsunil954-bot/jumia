@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Jumia Career | Apply & Pay</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      max-width: 880px;
+      width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #f68b1e 0%, #e07b0e 100%);
+      padding: 2rem 2rem 1.5rem;
+      color: white;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .header h1 i {
+      font-size: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.45rem;
+      border-radius: 16px;
+    }
+
+    .header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      font-weight: 500;
+      margin-left: 0.25rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-top: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Main content */
+    .content {
+      padding: 2rem 2rem 1.5rem;
+    }
+
+    /* Progress steps */
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2.25rem;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 40px;
+      right: 40px;
+      height: 2px;
+      background: #e9edf2;
+      z-index: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 2px solid #e9edf2;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #8d9aa8;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      background: #fff;
+    }
+
+    .step.active .step-circle {
+      border-color: #f68b1e;
+      background: #f68b1e;
+      color: white;
+      box-shadow: 0 6px 12px -6px rgba(246, 139, 30, 0.4);
+    }
+
+    .step.completed .step-circle {
+      border-color: #2e7d32;
+      background: #2e7d32;
+      color: white;
+    }
+
+    .step-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      color: #6b7a88;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .step.active .step-label {
+      color: #f68b1e;
+    }
+
+    .step.completed .step-label {
+      color: #2e7d32;
+    }
+
+    /* Job card */
+    .job-card {
+      background: #f9fbfd;
+      border: 1px solid #eef2f6;
+      border-radius: 20px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      transition: all 0.2s;
+    }
+
+    .job-icon {
+      background: #fff;
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: #f68b1e;
+      box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+      border: 1px solid #eef2f6;
+    }
+
+    .job-info h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e2a36;
+      margin-bottom: 0.25rem;
+    }
+
+    .job-info .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: #5e6f7e;
+    }
+
+    .job-info .meta i {
+      color: #f68b1e;
+      margin-right: 0.25rem;
+      font-size: 0.8rem;
+    }
+
+    /* Payment section */
+    .payment-box {
+      background: #ffffff;
+      border: 1.5px dashed #d8e0e8;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: all 0.2s;
+    }
+
+    .payment-box:hover {
+      border-color: #f68b1e;
+      background: #fffcf9;
+    }
+
+    .payment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .payment-header h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e2a36;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .payment-header h4 i {
+      color: #f68b1e;
+      background: #fff2e5;
+      padding: 0.4rem;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1e2a36;
+      letter-spacing: -0.02em;
+      background: #f0f4f8;
+      padding: 0.25rem 1rem;
+      border-radius: 60px;
+    }
+
+    .amount small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #6b7a88;
+    }
+
+    .mpesa-instruction {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #eef6ff;
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      border-left: 5px solid #2e7d32;
+    }
+
+    .mpesa-instruction i {
+      font-size: 2rem;
+      color: #2e7d32;
+    }
+
+    .mpesa-instruction .text {
+      font-size: 0.9rem;
+      color: #1e2a36;
+      line-height: 1.5;
+    }
+
+    .mpesa-instruction .text strong {
+      font-weight: 700;
+      color: #0a4b1c;
+      background: #d4edda;
+      padding: 0.15rem 0.5rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: inline-block;
+    }
+
+    /* Form */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #3e4c5a;
+      letter-spacing: 0.2px;
+    }
+
+    .form-group input {
+      padding: 0.85rem 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      background: #ffffff;
+      width: 100%;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #f68b1e;
+      box-shadow: 0 0 0 4px rgba(246, 139, 30, 0.12);
+    }
+
+    .form-group input::placeholder {
+      color: #a0aec0;
+      font-weight: 400;
+    }
+
+    /* Pay button */
+    .pay-btn {
+      background: #f68b1e;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 60px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: 0.2s;
+      box-shadow: 0 12px 24px -8px rgba(246, 139, 30, 0.4);
+      letter-spacing: 0.3px;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pay-btn i {
+      font-size: 1.1rem;
+    }
+
+    .pay-btn:hover {
+      background: #e07b0e;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px -8px rgba(246, 139, 30, 0.5);
+    }
+
+    .pay-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 16px -6px rgba(246, 139, 30, 0.4);
+    }
+
+    .pay-btn:disabled {
+      background: #cfdde9;
+      box-shadow: none;
+      transform: none;
+      cursor: not-allowed;
+      color: #8d9aa8;
+    }
+
+    /* Footer / apply section */
+    .apply-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid #edf2f7;
+      padding-top: 1.5rem;
+    }
+
+    .apply-note {
+      font-size: 0.85rem;
+      color: #6b7a88;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .apply-note i {
+      color: #f68b1e;
+    }
+
+    .apply-btn {
+      background: #1e2a36;
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 60px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: 0.2s;
+      opacity: 0.7;
+      pointer-events: none;
+      letter-spacing: 0.3px;
+    }
+
+    .apply-btn.enabled {
+      opacity: 1;
+      pointer-events: auto;
+      background: #1e2a36;
+    }
+
+    .apply-btn.enabled:hover {
+      background: #0f1a24;
+      transform: translateY(-2px);
+    }
+
+    .apply-btn i {
+      font-size: 1rem;
+    }
+
+    /* Toast message */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      background: #1e2a36;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: 90vw;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast i {
+      color: #f68b1e;
+      font-size: 1.2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 0.75rem;
+      }
+
+      .header {
+        padding: 1.5rem 1.25rem 1.25rem;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .header h1 i {
+        font-size: 1.6rem;
+        padding: 0.35rem;
+      }
+
+      .content {
+        padding: 1.5rem 1.25rem 1rem;
+      }
+
+      .steps::before {
+        left: 30px;
+        right: 30px;
+      }
+
+      .step-circle {
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
+      }
+
+      .step-label {
+        font-size: 0.65rem;
+      }
+
+      .job-card {
+        padding: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .payment-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .amount {
+        font-size: 1.3rem;
+      }
+
+      .mpesa-instruction {
+        flex-wrap: wrap;
+      }
+
+      .apply-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .apply-btn {
+        justify-content: center;
+      }
+
+      .toast {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+        white-space: normal;
+        text-align: center;
+        border-radius: 40px;
+        max-width: 92vw;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .step-label {
+        font-size: 0.55rem;
+      }
+
+      .step-circle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+      }
+
+      .steps::before {
+        top: 14px;
+      }
+    }
+
+    /* Animations */
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(246, 139, 30, 0.3); }
+      70% { box-shadow: 0 0 0 12px rgba(246, 139, 30, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(246, 139, 30, 0); }
+    }
+
+    .pay-btn:not(:disabled):focus-visible {
+      animation: pulseGlow 1.5s infinite;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <!-- Header -->
+  <div class="header">
+    <h1>
+      <i class="fas fa-briefcase"></i>
+      Jumia Career
+    </h1>
+    <p>Apply for your dream job — fast & secure</p>
+    <span class="badge"><i class="fas fa-shield-alt" style="margin-right: 6px;"></i> Verified payment required</span>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Steps -->
+    <div class="steps">
+      <div class="step active" id="step1">
+        <div class="step-circle">1</div>
+        <div class="step-label">Pay</div>
+      </div>
+      <div class="step" id="step2">
+        <div class="step-circle">2</div>
+        <div class="step-label">Verify</div>
+      </div>
+      <div class="step" id="step3">
+        <div class="step-circle">3</div>
+        <div class="step-label">Apply</div>
+      </div>
+    </div>
+
+    <!-- Job card -->
+    <div class="job-card">
+      <div class="job-icon">
+        <i class="fas fa-user-tie"></i>
+      </div>
+      <div class="job-info">
+        <h3>Logistics Operations Associate</h3>
+        <div class="meta">
+          <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+          <span><i class="fas fa-clock"></i> Full-time</span>
+          <span><i class="fas fa-calendar-alt"></i> Closes 30 Nov 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment box -->
+    <div class="payment-box" id="paymentBox">
+      <div class="payment-header">
+        <h4><i class="fas fa-mobile-alt"></i> Payment required</h4>
+        <div class="amount">KSh 500 <small>/ application</small></div>
+      </div>
+
+      <div class="mpesa-instruction">
+        <i class="fas fa-phone-alt"></i>
+        <div class="text">
+          Pay via M-Pesa to <strong>0758036006</strong><br />
+          Use your phone number as account number. Then enter the details below.
+        </div>
+      </div>
+
+      <form id="paymentForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label><i class="fas fa-user" style="margin-right: 6px; color: #f68b1e;"></i>Full name</label>
+            <input type="text" id="fullName" placeholder="e.g. John Kamau" required />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-envelope" style="margin-right: 6px; color: #f68b1e;"></i>Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label><i class="fas fa-phone" style="margin-right: 6px; color: #f68b1e;"></i>M-Pesa phone number</label>
+            <input type="tel" id="phone" placeholder="0712 345 678" required />
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-receipt" style="margin-right: 6px; color: #f68b1e;"></i>M-Pesa transaction code</label>
+            <input type="text" id="mpesaCode" placeholder="e.g. QJ72HS8K9L" required />
+          </div>
+        </div>
+
+        <button type="submit" class="pay-btn" id="payBtn">
+          <i class="fas fa-lock"></i> Pay KSh 500 &amp; verify
+        </button>
+      </form>
+    </div>
+
+    <!-- Apply section (initially locked) -->
+    <div class="apply-section">
+      <div class="apply-note">
+        <i class="fas fa-info-circle"></i>
+        <span id="applyNote">Complete payment to unlock application.</span>
+      </div>
+      <button class="apply-btn" id="applyBtn" disabled>
+        <i class="fas fa-paper-plane"></i> Apply now
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMessage">Payment verified! You can now apply.</span>
+</div>
+
+<script>
+  (function() {
+    // DOM elements
+    const paymentForm = document.getElementById('paymentForm');
+    const payBtn = document.getElementById('payBtn');
+    const applyBtn = document.getElementById('applyBtn');
+    const applyNote = document.getElementById('applyNote');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+
+    // Inputs
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const mpesaCode = document.getElementById('mpesaCode');
+
+    // State
+    let isPaid = false;
+
+    // Show toast function
+    function showToast(message, icon = 'fa-check-circle', isError = false) {
+      toastMessage.textContent = message;
+      const iconEl = toast.querySelector('i');
+      if (iconEl) {
+        iconEl.className = isError ? 'fas fa-exclamation-circle' : `fas ${icon}`;
+      }
+      toast.style.background = isError ? '#b91c1c' : '#1e2a36';
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    // --- Payment form submission ---
+    paymentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Simple validation
+      if (!fullName.value.trim() || !email.value.trim() || !phone.value.trim() || !mpesaCode.value.trim()) {
+        showToast('Please fill in all fields.', 'fa-exclamation-circle', true);
+        return;
+      }
+
+      // Email basic check
+      if (!email.value.includes('@') || !email.value.includes('.')) {
+        showToast('Enter a valid email address.', 'fa-exclamation-circle', true);
+        return;
+      }
+
+      // Phone: at least 10 digits (Kenyan format)
+      const phoneDigits = phone.value.replace(/\D/g, '');
+      if (phoneDigits.length < 9) {
+        showToast('Enter a valid M-Pesa phone number.', 'fa-exclamation-circle', true);
+        return;
+      }
+
+      // M-Pesa code: typical 10 chars alphanumeric
+      if (mpesaCode.value.trim().length < 6) {
+        showToast('Enter a valid M-Pesa transaction code.', 'fa-exclamation-circle', true);
+        return;
+      }
+
+      // Simulate payment verification
+      payBtn.disabled = true;
+      payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying payment...';
+
+      setTimeout(() => {
+        // Payment successful
+        isPaid = true;
+
+        // Update UI: step indicators
+        step1.classList.remove('active');
+        step1.classList.add('completed');
+        step2.classList.remove('active');
+        step2.classList.add('completed');
+        step3.classList.add('active');
+
+        // Enable apply button
+        applyBtn.disabled = false;
+        applyBtn.classList.add('enabled');
+        applyBtn.style.opacity = '1';
+        applyBtn.style.pointerEvents = 'auto';
+
+        // Update note
+        applyNote.innerHTML = '<i class="fas fa-check-circle" style="color: #2e7d32;"></i> Payment verified. You can now apply.';
+        applyNote.style.color = '#2e7d32';
+
+        // Change pay button text and state (keep disabled to avoid re-submission)
+        payBtn.innerHTML = '<i class="fas fa-check-circle"></i> Payment confirmed';
+        payBtn.style.background = '#2e7d32';
+        payBtn.style.boxShadow = '0 12px 24px -8px rgba(46, 125, 50, 0.4)';
+        payBtn.disabled = true;
+
+        // Disable form inputs (optional, but good for UX)
+        fullName.disabled = true;
+        email.disabled = true;
+        phone.disabled = true;
+        mpesaCode.disabled = true;
+
+        // Show success toast
+        showToast('Payment verified! You can now apply.', 'fa-check-circle');
+
+        // Scroll to apply button smoothly
+        applyBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      }, 1800);
+    });
+
+    // --- Apply button action (after payment) ---
+    applyBtn.addEventListener('click', function() {
+      if (!isPaid) {
+        showToast('Please complete payment first.', 'fa-exclamation-circle', true);
+        return;
+      }
+
+      // Simulate application submission
+      
